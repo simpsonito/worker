@@ -1,0 +1,31 @@
+services:
+  ts-node-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/home/node/app/src
+      - ./nodemon.json:/home/node/app/nodemon.json
+    container_name: ts-node-docker
+    command: npm run dev
+    depends_on:
+      - mongo
+    networks:
+      - travsport-net
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - travsport-net
+    volumes:
+      - mongo-data:/data/db
+networks:
+  travsport-net:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
