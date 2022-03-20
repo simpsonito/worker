@@ -1,22 +1,22 @@
-import * as mongoose from "mongoose";
 import { loadConfigs } from "./configs";
-import { EventResult } from "./models";
+import { Database } from "./database";
 import Seeker from "./Seeker";
+import { EventResult } from "./models";
+
 
 class Worker {
   constructor() {
     console.log("Worker starting");
     const { mongoAddress } = loadConfigs();
-    this.connectDatabase(mongoAddress);
+    Database.connect(mongoAddress);
+    this.getSavedEvents();
     const worker = new Seeker();
     worker.start();
   }
-
-  async connectDatabase(url: string) {
-    await mongoose.connect(url);
-    console.log("Connected to database");
+  async getSavedEvents() {
     const events = await EventResult.find();
     console.log("Previous Events", events);
+    return events;
   }
 }
 new Worker();

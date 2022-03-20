@@ -8,9 +8,10 @@ export function loadConfigs() {
       throw loadEnvs.error;
     }
   }
-  const { mongo_address, api_url, api_email, api_password } = process.env
+  const { mongo_address, mongo_test_address, api_url, api_email, api_password } = process.env
   return {
     mongoAddress: mongo_address,
+    mongoTestAddress: mongo_test_address,
     apiUrl: api_url,
     apiEmail: api_email,
     apiPassword: api_password,
