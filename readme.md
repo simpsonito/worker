@@ -1,7 +1,5 @@
 # Worker
 
-## How to start
-
 ## Requirements
 You need to have ``docker`` and ``docker-compose`` installed in your system
 Docker desktop is highly recommended
@@ -16,28 +14,28 @@ Edit and save your settings
 docker-compose build
 ```
 
-## 3. Run in development mode (dettached)
+### 3. Run in development mode (dettached)
 ```
 docker-compose up -d
 ```
 
-### Other useful commands
-## Watch the logs 
+## Other useful commands
+### Watch the logs 
 ```
 docker logs --follow ts-node-docker
 ```
 
-## Stop
+### Stop
 ```
 docker-compose down
 ```
 
-## Stop only one container
+### Stop only one container
 ```
 sudo docker stop ts-node-docker
 ```
 
-## 3. Run in production mode (dettached)
+### 3. Run in production mode (dettached)
 ```
 docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d
 ```
